@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,11 +18,13 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final CurrentUser currentUser;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, CurrentUser currentUser) {
+    public UserService(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -31,7 +34,10 @@ public class UserService {
             log.info("User with name [{}] not found!", loginDTO.getUsername());
             return false;
         }
-        boolean success = userOpt.get().getPassword().equals(loginDTO.getPassword());
+
+        String rawPassword = loginDTO.getPassword();
+        String encodedPassword = userOpt.get().getPassword();
+        boolean success = passwordEncoder.matches(rawPassword, encodedPassword);
         if (success) {
             login(userOpt.get());
         } else {
