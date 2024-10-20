@@ -1,8 +1,7 @@
 package com.mobilebg.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +10,13 @@ import java.util.List;
 @Table(name = "users")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String email;
+
     private String password;
 
     @Column(name = "first_name")
@@ -21,7 +24,9 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "last_name")
     private String lastName;
+
     private boolean isActive;
+
     private String imageUrl;
 
     @ManyToMany(fetch = FetchType.EAGER)
