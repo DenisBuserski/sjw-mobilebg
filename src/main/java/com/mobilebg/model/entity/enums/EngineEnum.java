@@ -5,5 +5,4 @@ public enum EngineEnum {
     DIESEL,
     ELECTRIC,
     HYBRID
-
 }

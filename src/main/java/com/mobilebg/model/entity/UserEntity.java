@@ -1,12 +1,16 @@
 package com.mobilebg.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String email;
@@ -40,4 +44,6 @@ public class UserEntity extends BaseEntity {
                ", userRoles=" + userRoles +
                '}';
     }
+
+
 }
