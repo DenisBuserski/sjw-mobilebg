@@ -1,6 +1,7 @@
 package com.mobilebg.model.dto;
 
 
+import com.mobilebg.model.validation.UniqueUserEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -10,8 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRegisterDTO {
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "User email should be provided!")
+    @Email(message = "User email should be valid!")
+    @UniqueUserEmail(message = "User email should be unique!")
     private String email;
 
     @NotEmpty
@@ -25,5 +27,6 @@ public class UserRegisterDTO {
     @NotEmpty
     @Size(min = 5)
     private String password;
+
     private String confirmPassword;
 }

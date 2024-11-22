@@ -4,6 +4,7 @@ import com.mobilebg.model.dto.UserLoginDTO;
 import com.mobilebg.model.dto.UserRegisterDTO;
 import com.mobilebg.model.entity.UserEntity;
 import com.mobilebg.model.entity.UserRoleEntity;
+import com.mobilebg.model.mapper.UserMapper;
 import com.mobilebg.repository.UserRepository;
 import com.mobilebg.user.CurrentUser;
 import jakarta.persistence.Column;
@@ -28,21 +29,26 @@ public class UserService {
     private final CurrentUser currentUser;
     private final PasswordEncoder passwordEncoder;
 
+    private final UserMapper userMapper;
+
     @Autowired
     public UserService(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = UserMapper.INSTANCE;;
     }
 
     public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
-        UserEntity newUser = UserEntity.builder()
-                .email(userRegisterDTO.getEmail())
-                .password(passwordEncoder.encode(userRegisterDTO.getPassword()))
-                .firstName(userRegisterDTO.getFirstName())
-                .lastName(userRegisterDTO.getLastName())
-                .isActive(true)
-                .build();
+        UserEntity newUser = userMapper.userDtoToUserEntity(userRegisterDTO);
+        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+//        UserEntity newUser = UserEntity.builder()
+//                .email(userRegisterDTO.getEmail())
+//                .password(passwordEncoder.encode(userRegisterDTO.getPassword()))
+//                .firstName(userRegisterDTO.getFirstName())
+//                .lastName(userRegisterDTO.getLastName())
+//                .isActive(true)
+//                .build();
         newUser = this.userRepository.save(newUser);
         login(newUser);
     }
