@@ -42,6 +42,7 @@ public class UserService {
     public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
         UserEntity newUser = userMapper.userDtoToUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        newUser.setActive(true);
 //        UserEntity newUser = UserEntity.builder()
 //                .email(userRegisterDTO.getEmail())
 //                .password(passwordEncoder.encode(userRegisterDTO.getPassword()))

@@ -1,4 +1,4 @@
-package com.mobilebg.model.entity.enums;
+package com.mobilebg.model.enums;
 
 public enum CategoryEnum {
     CAR,

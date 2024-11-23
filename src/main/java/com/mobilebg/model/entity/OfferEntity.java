@@ -1,7 +1,7 @@
 package com.mobilebg.model.entity;
 
-import com.mobilebg.model.entity.enums.EngineEnum;
-import com.mobilebg.model.entity.enums.TransmissionEnum;
+import com.mobilebg.model.enums.EngineEnum;
+import com.mobilebg.model.enums.TransmissionEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

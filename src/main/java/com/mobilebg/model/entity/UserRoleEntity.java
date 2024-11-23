@@ -1,6 +1,6 @@
 package com.mobilebg.model.entity;
 
-import com.mobilebg.model.entity.enums.UserRoleEnum;
+import com.mobilebg.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

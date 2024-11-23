@@ -1,6 +1,6 @@
 package com.mobilebg.model.entity;
 
-import com.mobilebg.model.entity.enums.CategoryEnum;
+import com.mobilebg.model.enums.CategoryEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

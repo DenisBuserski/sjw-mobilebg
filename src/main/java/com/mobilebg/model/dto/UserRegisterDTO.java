@@ -1,6 +1,7 @@
 package com.mobilebg.model.dto;
 
 
+import com.mobilebg.model.validation.FieldMatch;
 import com.mobilebg.model.validation.UniqueUserEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,6 +11,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Password do not match!")
 public class UserRegisterDTO {
     @NotEmpty(message = "User email should be provided!")
     @Email(message = "User email should be valid!")

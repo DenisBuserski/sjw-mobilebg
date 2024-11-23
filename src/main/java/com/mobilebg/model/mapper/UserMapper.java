@@ -10,6 +10,5 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Mapping(target = "isActive", constant = "true")
     UserEntity userDtoToUserEntity(UserRegisterDTO registerDTO);
 }
