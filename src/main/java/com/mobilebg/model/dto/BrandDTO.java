@@ -1,5 +1,6 @@
 package com.mobilebg.model.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 public class BrandDTO {
+    private String name;
+
     private List<ModelDTO> models;
 
     public BrandDTO addModel(ModelDTO model) {

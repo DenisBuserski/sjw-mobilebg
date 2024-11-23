@@ -12,10 +12,12 @@ import org.springframework.web.context.annotation.SessionScope;
 public class CurrentUser {
     private String name;
     private boolean loggedIn;
+    private String email;
 
     public void clear() {
         loggedIn = false;
         name = null;
+        email = null;
     }
 
     public boolean isAnonymous() {
